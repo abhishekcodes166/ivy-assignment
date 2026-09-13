@@ -1,0 +1,99 @@
+[
+  {
+    "endpoint": "/health",
+    "category": "completeness",
+    "documented": "returns service status and the server clock",
+    "actual": "{\"status\":\"ok\",\"server_time\":\"2026-09-14T02:31:06.147587+05:30\",\"timezone\":\"Asia/Kolkata\",\"reference_date\":\"2026-09-10T00:00:00+05:30\"}",
+    "how_found": "initial health check",
+    "impact": "baseline - establishes API is responsive",
+    "evidence": []
+  },
+  {
+    "endpoint": "/v1/listings",
+    "category": "filters",
+    "documented": "furnishing parameter filters by furnishing type",
+    "actual": "furnishing filter is ignored - returns results regardless of furnishing type",
+    "how_found": "requested furnishing=fully-furnished and got mixed results",
+    "impact": "Users cannot filter by furnishing on frontend unless we filter client-side",
+    "evidence": [
+      "DWE-3002501"
+    ]
+  },
+  {
+    "endpoint": "/v1/listings",
+    "category": "duplicates",
+    "documented": "Each listing corresponds to exactly one physical property",
+    "actual": "Found 16 duplicate groups (32 total duplicate listings)",
+    "how_found": "analyzed property identities across all listings",
+    "impact": "Some properties are listed multiple times, skewing statistics",
+    "evidence": [
+      "100-3002778",
+      "ZER-3003644",
+      "DWE-3003376",
+      "DWE-3002555",
+      "ZER-3001841",
+      "ZER-3003774",
+      "ZER-3000947",
+      "ZER-3002364",
+      "100-3002624",
+      "SQU-3001754"
+    ]
+  },
+  {
+    "endpoint": "/v1/listings",
+    "category": "data_quality",
+    "documented": "All listing records describe real properties",
+    "actual": "386 listings contain impossible combinations (e.g., floor > total_floors)",
+    "how_found": "checked validity of all combinations of floor, area, bedroom, etc.",
+    "impact": "Data quality issue - corrupt records should be flagged or removed",
+    "evidence": [
+      "MAG-3001756",
+      "100-3001265",
+      "MAG-3001327",
+      "DWE-3002738",
+      "MAG-3002851",
+      "MAG-3003434",
+      "100-3000344",
+      "MAG-3001035",
+      "ZER-3003587",
+      "100-3003022"
+    ]
+  },
+  {
+    "endpoint": "/v1/listings",
+    "category": "fraud",
+    "documented": "All listings represent genuine properties",
+    "actual": "7 listings show systematic patterns suggesting they are not genuine",
+    "how_found": "looked for repeated descriptions, numerical patterns, and systematic generation",
+    "impact": "Some listings may be generating false enquiries",
+    "evidence": [
+      "ZER-3001998",
+      "DWE-3003211",
+      "DWE-3003278",
+      "DWE-3001729",
+      "DWE-3003049",
+      "100-3002340",
+      "SQU-3001446"
+    ]
+  },
+  {
+    "endpoint": "/v1/projects",
+    "category": "consistency",
+    "documented": "total_listings always agrees with count from /v1/listings?project_id=...",
+    "actual": "317 projects have incorrect total_listings",
+    "how_found": "counted listings per project and compared with claimed total_listings",
+    "impact": "Project counts are unreliable",
+    "evidence": [
+      "P30003",
+      "P30004",
+      "P30006",
+      "P30007",
+      "P30008",
+      "P30009",
+      "P30010",
+      "P30011",
+      "P30012",
+      "P30013"
+    ]
+  }
+]

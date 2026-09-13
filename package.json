@@ -1,0 +1,22 @@
+{
+  "name": "ivy-api-investigation",
+  "version": "1.0.0",
+  "description": "Rigorous API investigation and data audit for Ivy Homes",
+  "type": "module",
+  "main": "investigation.js",
+  "scripts": {
+    "test:health": "node scripts/test-health.js",
+    "test:auth": "node scripts/test-auth.js",
+    "investigate": "node investigation.js",
+    "analyze:filters": "node scripts/filter-investigation.js",
+    "analyze:sorting": "node scripts/sorting-investigation.js",
+    "analyze:pagination": "node scripts/pagination-investigation.js",
+    "analyze:units": "node scripts/unit-investigation.js",
+    "analyze:timestamps": "node scripts/timestamp-investigation.js",
+    "analyze:quality": "node scripts/data-quality-investigation.js",
+    "generate:answers": "node scripts/generate-answers.js",
+    "generate:findings": "node scripts/generate-findings.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
