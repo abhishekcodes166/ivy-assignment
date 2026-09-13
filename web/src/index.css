@@ -1,0 +1,88 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Deep evergreen reads as trust and permanence without the coldness of a
+     corporate blue — the register a property brand wants. */
+  --color-brand-50: #edfaf4;
+  --color-brand-100: #d3f2e3;
+  --color-brand-200: #a9e5cb;
+  --color-brand-300: #72d0ad;
+  --color-brand-400: #3fb389;
+  --color-brand-500: #1f956d;
+  --color-brand-600: #107857;
+  --color-brand-700: #0d5f47;
+  --color-brand-800: #0e4b3a;
+  --color-brand-900: #0c3e31;
+
+  /* Warm neutrals keep large surfaces from looking clinical. */
+  --color-sand-50: #faf9f7;
+  --color-sand-100: #f4f2ee;
+  --color-sand-200: #e8e4dd;
+  --color-sand-300: #d6d0c5;
+  --color-sand-400: #a9a294;
+  --color-sand-500: #7c7566;
+  --color-sand-600: #5b5549;
+  --color-sand-700: #413c33;
+  --color-sand-800: #2b2721;
+  --color-sand-900: #1a1714;
+
+  --color-accent-500: #b4763a;
+  --color-accent-100: #f6e9da;
+
+  --radius-card: 0.875rem;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-sand-50 text-sand-800 antialiased;
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'tnum' 0;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+
+  ::selection {
+    @apply bg-brand-100 text-brand-900;
+  }
+}
+
+@layer utilities {
+  /* Tabular figures keep price columns from shifting as digits change. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .shimmer {
+    background-image: linear-gradient(
+      90deg,
+      var(--color-sand-200) 0%,
+      var(--color-sand-100) 40%,
+      var(--color-sand-200) 80%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: 150% 0;
+    }
+    100% {
+      background-position: -50% 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .shimmer {
+      animation: none;
+    }
+  }
+}
