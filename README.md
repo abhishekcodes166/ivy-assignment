@@ -1,39 +1,60 @@
-Ivy Homes Assignment
+# Ivy Homes Assignment
 
 This repository contains my solution for the Ivy Homes Software Engineering Internship assignment.
 
-What I worked on
+## Phase 1 — API Investigation
 
-For the first phase, I focused on understanding the API and checking how closely the provided API documentation matches the actual API.
+I started by investigating the Ivy Homes API and comparing its actual behaviour with the provided documentation.
 
-I did not assume that the documentation was always correct. I tested the endpoints and analyzed the returned data before using it for the assignment questions.
+I checked:
 
-Phase 1 - API Investigation
+- Authentication
+- Endpoints
+- Pagination
+- Filters
+- Sorting
+- Units and timestamps
+- Duplicate properties
+- Corrupt and fake listings
+- Project/listing consistency
+- The 10 assignment questions
 
-The API investigation covers:
+I treated the actual API response as the source of truth instead of blindly trusting the documentation.
 
-API authentication and session behavior
+### Investigation Results
 
-Available and missing endpoints
+![Phase 1 Answers](https://cdn.postimage.me/2026/09/14/Screenshot-2026-09-14-at-2.31.24AM.png)
 
-Pagination
+![Phase 1 Generated Files](https://cdn.postimage.me/2026/09/14/Screenshot-2026-09-14-at-2.31.34AM.png)
 
-Filters
+The investigation generates:
 
-Sorting
+- `analysis/AUDIT_REPORT.md` — API investigation summary
+- `analysis/answers.json` — answers to the 10 questions
+- `analysis/hypotheses.md` — hypotheses and tests
+- `analysis/findings.json` — documentation discrepancies
 
-Units and data formats
+### Run the Investigation
 
-Timestamps and timezone handling
+```bash
+node investigation.js
+```
 
-Duplicate properties
+The API key and base URL are read from `.env`.
 
-Corrupt listings
+## Phase 2 — Frontend
 
-Fake listings
+The frontend will be built using the behaviour verified during Phase 1.
 
-Project/listing consistency
+## Tech Stack
 
-The 10 questions from the assignment
+- Node.js
+- React
+- TypeScript
+- Vite
 
-The scripts used for the investigation are kept in the analysis/ and scripts/ directories.
+## AI Usage
+
+I used GitHub Copilot during development for assistance with investigation and coding. I reviewed and tested the generated code against the actual API.
+
+![Screenshot 2026 09 14 at 3.42.44 AM](https://cdn.postimage.me/2026/09/14/Screenshot-2026-09-14-at-3.42.44AM.png)
